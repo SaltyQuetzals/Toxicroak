@@ -37,10 +37,6 @@ def build_data_path(filename, use_preprocessed=False):
     return training_data_path
 
 def print_report(y_truth, y_predictions, data_type='VALIDATION'):
-    hamming_loss = metrics.hamming_loss(y_truth, y_predictions, labels=LABEL_COLS)
-    jaccard = metrics.jaccard_similarity_score(y_truth, y_predictions)
     print(f'{data_type} RESULTS:')
-    print(f'Hamming loss (lower is better): {hamming_loss}')
-    print(f'Jaccard similarity (higher is better): {jaccard}')
     print()
     print(metrics.classification_report(y_truth, y_predictions, target_names=LABEL_COLS))
