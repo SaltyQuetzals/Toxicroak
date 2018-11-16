@@ -1,20 +1,30 @@
 from constants import DATA_PATH, LABEL_COLS
 
 import pandas as pd
+import re
+import string
 from sklearn import metrics
 
 
 def load_bad_words():
     """
-    Loads Facebook's list of obscene words.
+    Loads a list of obscene words.
 
     Returns:
     - A list of strings.
     """
-    BAD_WORDS = []
     with open(DATA_PATH + 'bad_words.txt', 'r') as f:
-        BAD_WORDS = f.read().split('\n')
-        return BAD_WORDS
+        return f.read().split('\n')
+    
+def load_ethnic_slurs():
+    """
+    Loads a list (from Wikipedia) of ethnic slurs.
+    
+    Returns:
+    - A list of strings.
+    """
+    with open(DATA_PATH + 'slurs.txt', 'r') as f:
+        return f.read().split('\n')
 
 
 def build_data_path(filename, use_preprocessed=False):
@@ -33,10 +43,32 @@ def build_data_path(filename, use_preprocessed=False):
     else:
         training_data_path += '/raw/'
     training_data_path += filename
-    
+
     return training_data_path
+
 
 def print_report(y_truth, y_predictions, data_type='VALIDATION'):
     print(f'{data_type} RESULTS:')
     print()
-    print(metrics.classification_report(y_truth, y_predictions, target_names=LABEL_COLS))
+    print(metrics.classification_report(
+        y_truth, y_predictions, target_names=LABEL_COLS))
+
+
+def run_on_test_data(model):
+    test_data = build_data_path('test.csv')
+
+    data_df = pd.read_csv(test_data)
+
+    test_labels = build_data_path('test_labels.csv')
+    label_df = pd.read_csv(test_labels)
+
+    test_df = data_df.set_index('id').join(label_df.set_index('id'))
+    CONDITIONS = [f'{label} != -1' for label in LABEL_COLS]
+    QUERY_STRING = ' & '.join(CONDITIONS)
+    test_df = test_df.query(QUERY_STRING)
+    X_test = test_df['comment_text']
+    y_test = test_df[LABEL_COLS]
+
+    y_predictions = model.predict(X_test)
+
+    print_report(y_test, y_predictions, data_type='TESTING')
