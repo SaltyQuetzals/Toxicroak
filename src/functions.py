@@ -52,6 +52,8 @@ def print_report(y_truth, y_predictions, data_type='VALIDATION'):
     print()
     print(metrics.classification_report(
         y_truth, y_predictions, target_names=LABEL_COLS))
+    print('Class-wise AUC-ROC (Kaggle)', metrics.roc_auc_score(y_truth, y_predictions, average=None))
+    print('Overall AUC-ROC (Kaggle)', metrics.roc_auc_score(y_truth, y_predictions, average='macro'))
 
 
 def run_on_test_data(model):
