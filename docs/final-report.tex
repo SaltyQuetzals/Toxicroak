@@ -136,17 +136,17 @@
 \section{Model Development}{
   \subsection{Feature Engineering}{
 	  Initially, the only feature used in training each model was the tokenized
-    document corpus as a bag-of-words (BOW), represented through TF-IDF vectors. 
-    However, we soon realized that there were some words that automatically 
-    marked a comment as being of a certain class. Most significantly, the 
-    presence of typical obscenities very often leads to a comment being 
-    classified as "obscene". Once we included a feature vector comprised of 
-    binary values, indicating whether an obscenity was present in the comment or
-    not, the classification accuracy of the "obscene" category jumped 
-    significantly. The same approach was taken to identifying "identity hate" 
-    comments by including a feature vector of slurs. However, the 
-    underrepresentation of the "identity hate" class proved to be more difficult
-    than that of the "obscene" class, and did not lead to similar results.
+	  document corpus as a bag-of-words (BOW), represented through TF-IDF vectors.
+	  However, we soon realized that there were some words that automatically
+	  marked a comment as being of a certain class. Most significantly, the
+	  presence of typical obscenities very often leads to a comment being
+	  classified as "obscene". Once we included a feature vector comprised of
+	  binary values, indicating whether an obscenity was present in the comment or
+	  not, the classification accuracy of the "obscene" category jumped
+	  significantly. The same approach was taken to identifying "identity hate"
+	  comments by including a feature vector of slurs. However, the
+	  underrepresentation of the "identity hate" class proved to be more difficult
+	  than that of the "obscene" class, and did not lead to similar results.
   }
   \subsection{Naive Bayes Classifier}{
 	  The first model built was a Naive Bayes classifier. A “bag of words” model
@@ -175,46 +175,69 @@
 	  score increased slightly, improving the classifier.
   }
   \subsection{Support Vector Machines (SVMs)}{
-    The second model created was an SVM model, to see if there would be 
-    improvements over the Naive Bayes classifier. The same feature set was used
-    as in the Naive Bayes classifier, and the same exhaustive hyperparameter 
-    tuning was performed. However, even with extensive hyperparameter tuning, 
-    the support vector machines performed significantly worse than the Naive 
-    Bayes classifier on both training and testing sets, as seen in Figure 
-    \ref{fig:svm-test} on page \pageref{fig:svm-test}.
+	  The second model created was an SVM model, to see if there would be
+	  improvements over the Naive Bayes classifier. The same feature set was used
+	  as in the Naive Bayes classifier, and the same exhaustive hyperparameter
+	  tuning was performed. However, even with extensive hyperparameter tuning,
+	  the support vector machines performed significantly worse than the Naive
+	  Bayes classifier on both training and testing sets, as seen in Figure
+	  \ref{fig:svm-test} on page \pageref{fig:svm-test}.
 
-    \begin{figure}[h]
-      \centering
-      \includegraphics[width=\textwidth]{svm-test-set.jpg}
-      \caption{Tuned SVM on Test Set}
-      \label{fig:svm-test}
-    \end{figure}
+	  \begin{figure}[h]
+		  \centering
+		  \includegraphics[width=\textwidth]{svm-test-set.jpg}
+		  \caption{Tuned SVM on Test Set}
+		  \label{fig:svm-test}
+	  \end{figure}
   }
   \subsection{Random Forest Classifier}{
-    The next model constructed was a random forest classifier. Random forest 
-    classifiers can accommodate imbalanced datasets by weighting majority 
-    classifications less on each example, which can reduce the impact that class
-    imbalances can have.
-    
-    After performing hyperparameter tuning, the results of the random forest 
-    classifier are lackluster when compared with that of Naive Bayes, but are 
-    significantly better than that of the support vector machine. The results 
-    can be found in Figure \ref{} on page \pageref{}.
+	  The next model constructed was a random forest classifier. Random forest
+	  classifiers can accommodate imbalanced datasets by weighting majority
+	  classifications less on each example, which can reduce the impact that class
+	  imbalances can have.
+
+	  After performing hyperparameter tuning, the results of the random forest
+	  classifier are lackluster when compared with that of Naive Bayes, but are
+	  significantly better than that of the support vector machine. The results
+	  can be found in Figure \ref{fig:rf-test} on page \pageref{fig:rf-test}.
+
+	  \begin{figure}[h]
+		  \centering
+		  \includegraphics[width=\textwidth]{rf-test-set.png}
+		  \caption{Tuned Random Forest on Test Set}
+		  \label{fig:rf-test}
+	  \end{figure}
   }
 
   \subsection{Recurrent Neural Network (RNN)}{
-    The final model constructed was a recurrent neural network classifier. The 
-    use of the bag-of-words interpretation of comments loses a significant 
-    amount of information, like sentence structure and word meaning. Recurrent 
-    neural networks, specifically LSTMs, which are designed for long sequences,
-    have demonstrated great promise in text classification. Another promising 
-    technology that has emerged through neural networks are word embeddings, 
-    which have been shown to model word semantic meaning in large corpi. We 
-    constructed a simple recurrent neural network consisting of two LSTM layers,
-    a pooling layer, a dropout layer, and finally a densely-connected layer with
-    a sigmoid activation function. The model was evaluated using a 
-    binary-crossentropy loss function after 10 epochs, and the results can be 
-    seen in Figure \ref{} on page \pageref{}. 
+	  The final model constructed was a recurrent neural network classifier. The
+	  use of the bag-of-words interpretation of comments loses a significant
+	  amount of information, like sentence structure and word meaning. Recurrent
+	  neural networks, specifically LSTMs, which are designed for long sequences,
+	  have demonstrated great promise in text classification. Another promising
+	  technology that has emerged through neural networks are word embeddings,
+	  which have been shown to model word semantic meaning in large corpi. We
+	  constructed a simple recurrent neural network consisting of two LSTM layers,
+	  a pooling layer, a dropout layer, and finally a densely-connected layer with
+	  a sigmoid activation function. The model was evaluated using a
+	  binary-crossentropy loss function after 10 epochs, and the results can be
+    seen in Figure \ref{fig:rnn-test} on page \pageref{fig:rnn-test}. The 
+    architecture for the model can be seen in Figure \ref{fig:model-arch} on 
+    page \pageref{fig:model-arch}
+    
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=\textwidth]{rnn-test-set.png}
+      \caption{RNN on Test Set}
+      \label{fig:rnn-test}
+    \end{figure}
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[height=10cm]{model-architecture.png}
+      \caption{RNN Model Architecture}
+      \label{fig:model-arch}
+    \end{figure}
   }
  }
 
@@ -222,15 +245,15 @@
 
 \section{Conclusions}{
   After evaluating the results of each model, it can be concluded that the Naive
-  Bayes classifier has the best performance; however, we believe that this is 
-  largely due to the significant imbalance of classes and the size of data. If 
-  more data was available, it makes sense that that the RNN would greatly 
-  benefit, and possibly surpass the Naive Bayes model. After this analysis, it 
-  can be concluded that the RNN with custom word embeddings would benefit the 
-  most from more data. Currently, the RNN built uses pre-trained word 
-  embeddings, but if provided more data, using custom word embeddings could 
+  Bayes classifier has the best performance; however, we believe that this is
+  largely due to the significant imbalance of classes and the size of data. If
+  more data was available, it makes sense that that the RNN would greatly
+  benefit, and possibly surpass the Naive Bayes model. After this analysis, it
+  can be concluded that the RNN with custom word embeddings would benefit the
+  most from more data. Currently, the RNN built uses pre-trained word
+  embeddings, but if provided more data, using custom word embeddings could
   provide better results.
-}
+ }
 
 
 
