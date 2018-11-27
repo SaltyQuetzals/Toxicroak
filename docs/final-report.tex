@@ -122,14 +122,31 @@
 	  In order to evaluate the models developed and verify that they were having
 	  an actual impact on classification quality, a baseline was created using the
 	  distribution of toxicity classes found. The result of the baseline on the
-	  testing dataset can be found in Figure \ref{fig:rand-base}.
+	  testing dataset can be found in Figure \ref{table:rand-base} on page
+	  \pageref{table:rand-base}.
 
-	  \begin{figure}[h]
+	  \begin{table}[h!]
 		  \centering
-		  \includegraphics[width=\textwidth]{random-baseline.png}
+		  \begin{tabular}{|c|| c c c c|}
+			  \hline
+			                                     & Precision              & Recall                 & F1-Score               & Support                 \\ [0.5ex]
+			  \hline\hline
+			  Toxic                              & 0.10                   & 0.06                   & 0.16                   & 5038                    \\
+			  Severely Toxic                     & 0.01                   & 0.06                   & 0.02                   & 500                     \\
+			  Obscene                            & 0.05                   & 0.23                   & 0.08                   & 2810                    \\
+			  Threat                             & 0.00                   & 0.02                   & 0.08                   & 152                     \\
+			  Insult                             & 0.05                   & 0.23                   & 0.01                   & 2591                    \\
+			  Identity Hate                      & 0.01                   & 0.04                   & 0.01                   & 449                     \\
+			  \hline\hline
+			  Micro Average                      & 0.07                   & 0.30                   & 0.11                   & 11540                   \\
+			  Macro Average                      & 0.04                   & 0.17                   & 0.06                   & 11540                   \\
+			  \textit{\textbf{Weighted Average}} & \textit{\textbf{0.07}} & \textit{\textbf{0.30}} & \textit{\textbf{0.11}} & \textit{\textbf{11540}} \\
+
+			  \hline
+		  \end{tabular}
 		  \caption{Random Baseline Results}
-		  \label{fig:rand-base}
-	  \end{figure}
+		  \label{table:rand-base}
+	  \end{table}
   }
 
  }
@@ -161,15 +178,31 @@
 	  significantly. After performing an exhaustive hyperparameter search through
 	  sklearn's \texttt{GridSearchCV}, the overall recall of the system increased,
 	  while the overall precision decreased slightly. The results of the
-	  hyperparameter tuning can be seen in Figure \ref{fig:nb-test} on page
-	  \pageref{fig:nb-test}.
+	  hyperparameter tuning can be seen in Figure \ref{table:nb-test} on page
+	  \pageref{table:nb-test}.
 
-	  \begin{figure}[h]
+	  \begin{table}[h!]
 		  \centering
-		  \includegraphics[width=\textwidth]{nb-test-set.png}
+		  \begin{tabular}{|c|| c c c c|}
+			  \hline
+			                                     & Precision              & Recall                 & F1-Score               & Support                 \\ [0.5ex]
+			  \hline\hline
+			  Toxic                              & 0.10                   & 0.06                   & 0.16                   & 5038                    \\
+			  Severely Toxic                     & 0.01                   & 0.06                   & 0.02                   & 500                     \\
+			  Obscene                            & 0.05                   & 0.23                   & 0.08                   & 2810                    \\
+			  Threat                             & 0.00                   & 0.02                   & 0.08                   & 152                     \\
+			  Insult                             & 0.05                   & 0.23                   & 0.01                   & 2591                    \\
+			  Identity Hate                      & 0.01                   & 0.04                   & 0.01                   & 449                     \\
+			  \hline\hline
+			  Micro Average                      & 0.07                   & 0.30                   & 0.11                   & 11540                   \\
+			  Macro Average                      & 0.04                   & 0.17                   & 0.06                   & 11540                   \\
+			  \textit{\textbf{Weighted Average}} & \textit{\textbf{0.07}} & \textit{\textbf{0.30}} & \textit{\textbf{0.11}} & \textit{\textbf{11540}} \\
+
+			  \hline
+		  \end{tabular}
 		  \caption{Tuned Naive Bayes on Test Set}
-		  \label{fig:nb-test}
-	  \end{figure}
+		  \label{table:nb-test}
+	  \end{table}
 
 	  Despite the macro-averaged F1 score not changing, the weighted-average F1
 	  score increased slightly, improving the classifier.
@@ -181,14 +214,30 @@
 	  tuning was performed. However, even with extensive hyperparameter tuning,
 	  the support vector machines performed significantly worse than the Naive
 	  Bayes classifier on both training and testing sets, as seen in Figure
-	  \ref{fig:svm-test} on page \pageref{fig:svm-test}.
+	  \ref{table:svm-test} on page \pageref{table:svm-test}.
 
-	  \begin{figure}[h]
+	  \begin{table}[h!]
 		  \centering
-		  \includegraphics[width=\textwidth]{svm-test-set.jpg}
+		  \begin{tabular}{|c|| c c c c|}
+			  \hline
+			                                     & Precision              & Recall                 & F1-Score               & Support                 \\ [0.5ex]
+			  \hline\hline
+			  Toxic                              & 0.96                   & 0.06                   & 0.12                   & 6090                    \\
+			  Severely Toxic                     & 0.00                   & 0.00                   & 0.00                   & 367                     \\
+			  Obscene                            & 0.95                   & 0.09                   & 0.16                   & 3691                    \\
+			  Threat                             & 0.00                   & 0.00                   & 0.00                   & 211                     \\
+			  Insult                             & 0.67                   & 0.01                   & 0.03                   & 3427                    \\
+			  Identity Hate                      & 0.00                   & 0.00                   & 0.00                   & 712                     \\
+			  \hline\hline
+			  Micro Average                      & 0.93                   & 0.05                   & 0.10                   & 14498                   \\
+			  Macro Average                      & 0.43                   & 0.03                   & 0.05                   & 14498                   \\
+			  \textit{\textbf{Weighted Average}} & \textit{\textbf{0.80}} & \textit{\textbf{0.05}} & \textit{\textbf{0.10}} & \textit{\textbf{14498}} \\
+
+			  \hline
+		  \end{tabular}
 		  \caption{Tuned SVM on Test Set}
-		  \label{fig:svm-test}
-	  \end{figure}
+		  \label{table:svm-test}
+	  \end{table}
   }
   \subsection{Random Forest Classifier}{
 	  The next model constructed was a random forest classifier. Random forest
@@ -199,14 +248,30 @@
 	  After performing hyperparameter tuning, the results of the random forest
 	  classifier are lackluster when compared with that of Naive Bayes, but are
 	  significantly better than that of the support vector machine. The results
-	  can be found in Figure \ref{fig:rf-test} on page \pageref{fig:rf-test}.
+	  can be found in Figure \ref{table:rf-test} on page \pageref{table:rf-test}.
 
-	  \begin{figure}[h]
+	  \begin{table}[h!]
 		  \centering
-		  \includegraphics[width=\textwidth]{rf-test-set.png}
+		  \begin{tabular}{|c|| c c c c|}
+			  \hline
+			                                     & Precision              & Recall                 & F1-Score               & Support                 \\ [0.5ex]
+			  \hline\hline
+			  Toxic                              & 0.57                   & 0.76                   & 0.65                   & 6090                    \\
+			  Severely Toxic                     & 0.23                   & 0.08                   & 0.12                   & 367                     \\
+			  Obscene                            & 0.58                   & 0.68                   & 0.63                   & 3691                    \\
+			  Threat                             & 0.33                   & 0.05                   & 0.09                   & 211                     \\
+			  Insult                             & 0.56                   & 0.52                   & 0.54                   & 3427                    \\
+			  Identity Hate                      & 0.57                   & 0.12                   & 0.20                   & 712                     \\
+			  \hline\hline
+			  Micro Average                      & 0.57                   & 0.62                   & 0.59                   & 14498                   \\
+			  Macro Average                      & 0.47                   & 0.37                   & 0.37                   & 14498                   \\
+			  \textit{\textbf{Weighted Average}} & \textit{\textbf{0.56}} & \textit{\textbf{0.62}} & \textit{\textbf{0.57}} & \textit{\textbf{14498}} \\
+
+			  \hline
+		  \end{tabular}
 		  \caption{Tuned Random Forest on Test Set}
-		  \label{fig:rf-test}
-	  \end{figure}
+		  \label{table:rf-test}
+	  \end{table}
   }
 
   \subsection{Recurrent Neural Network (RNN)}{
@@ -221,27 +286,93 @@
 	  a pooling layer, a dropout layer, and finally a densely-connected layer with
 	  a sigmoid activation function. The model was evaluated using a
 	  binary-crossentropy loss function after 10 epochs, and the results can be
-    seen in Figure \ref{fig:rnn-test} on page \pageref{fig:rnn-test}. The 
-    architecture for the model can be seen in Figure \ref{fig:model-arch} on 
-    page \pageref{fig:model-arch}
-    
-    \begin{figure}[h]
-      \centering
-      \includegraphics[width=\textwidth]{rnn-test-set.png}
-      \caption{RNN on Test Set}
-      \label{fig:rnn-test}
-    \end{figure}
+	  seen in Figure \ref{table:rnn-test} on page \pageref{table:rnn-test}. The
+	  architecture for the model can be seen in Figure \ref{fig:model-arch} on
+	  page \pageref{fig:model-arch}
 
-    \begin{figure}[h]
-      \centering
-      \includegraphics[height=10cm]{model-architecture.png}
-      \caption{RNN Model Architecture}
-      \label{fig:model-arch}
-    \end{figure}
+	  \begin{table}[h!]
+		  \centering
+		  \begin{tabular}{|c|| c c c c|}
+			  \hline
+			                                     & Precision              & Recall                 & F1-Score               & Support                 \\ [0.5ex]
+			  \hline\hline
+			  Toxic                              & 0.57                   & 0.85                   & 0.68                   & 6090                    \\
+			  Severely Toxic                     & 0.34                   & 0.48                   & 0.40                   & 367                     \\
+			  Obscene                            & 0.60                   & 0.80                   & 0.68                   & 3691                    \\
+			  Threat                             & 0.00                   & 0.00                   & 0.00                   & 211                     \\
+			  Insult                             & 0.52                   & 0.72                   & 0.61                   & 3427                    \\
+			  Identity Hate                      & 0.67                   & 0.22                   & 0.34                   & 712                     \\
+			  \hline\hline
+			  Micro Average                      & 0.56                   & 0.75                   & 0.64                   & 14498                   \\
+			  Macro Average                      & 0.45                   & 0.51                   & 0.45                   & 14498                   \\
+			  \textit{\textbf{Weighted Average}} & \textit{\textbf{0.56}} & \textit{\textbf{0.75}} & \textit{\textbf{0.63}} & \textit{\textbf{14498}} \\
+
+			  \hline
+		  \end{tabular}
+		  \caption{RNN on Test Set}
+		  \label{table:rnn-test}
+	  \end{table}
+
+	  \begin{figure}[h]
+		  \centering
+		  \includegraphics[height=10cm]{model-architecture.png}
+		  \caption{RNN Model Architecture}
+		  \label{fig:model-arch}
+	  \end{figure}
   }
  }
 
-\section{Results Analysis}{}
+\section{Results Analysis}{
+  After completing all of our tuned hyperparameter runs, we extracted features
+  from the Naive Bayes classifier, and viewed the words and phrases that
+  contributed most to each classification. Selected results can be seen in
+  Figure \ref{fig:features} on page \pageref{fig:features}.
+
+  \begin{figure}
+	  \textbf{toxic}
+	  \begin{verbatim}
+		yammer
+		follarte
+		fuckyourself
+		crackhead
+	\end{verbatim}
+	  \textbf{severe toxic}
+	  \begin{verbatim}
+		stomes
+		cartuchos
+		ancestryearly
+	\end{verbatim}
+	  \textbf{obscene}
+	  \begin{verbatim}
+		achmed
+		sexmist
+		britch
+		zigabo
+	\end{verbatim}
+	  \textbf{threat}
+	  \begin{verbatim}
+		m45terbate
+		ma5terb8
+		masterbat3
+		zigabo
+	\end{verbatim}
+	  \textbf{insult}
+	  \begin{verbatim}
+		crackhead
+		libtard
+		suberbia
+	\end{verbatim}
+	  \textbf{identity hate}
+	  \begin{verbatim}
+		gomnna
+		zigabo
+		nebracka
+	\end{verbatim}
+	  \caption{Most Valuable Features}
+	  \label{fig:features}
+  \end{figure}
+
+ }
 
 \section{Conclusions}{
   After evaluating the results of each model, it can be concluded that the Naive
