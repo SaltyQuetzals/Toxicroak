@@ -25,7 +25,7 @@
 	network.
 \end{abstract}
 
-\section{Dataset Source}{
+\section{Dataset Source \textit{Gabriel Britain}}{
   The dataset used can be found on Kaggle under the "Toxic Comment
   Classification Challenge." Another participant in the challenge
   performed data augmentation by running the original training dataset
@@ -34,7 +34,7 @@
   overfitting, as discussed later.
  }
 
-\section{Frameworks}{
+\section{Frameworks \textit{Gabriel Britain}}{
   For data analyis and graphing, pandas\cite{mckinney-proc-scipy-2010}
   and matplotlib\cite{Hunter:2007} were used. For the process of actual
   machine learning model building, rather than spending a significant amount
@@ -72,7 +72,7 @@
   }
  }
 
-\section{Evaluation Metrics}{
+\section{Evaluation Metrics \textit{Jonathan Innis}}{
   The task of identifying toxic comments can be modeled as a multilabel
   classification problem. As a result, we set out to find evaluation metrics
   that were appropriate for the task. Initially, Hamming loss
@@ -90,7 +90,7 @@
   other submitted models.
  }
 \section{Process}{
-  \subsection{Data Analysis}{
+  \subsection{Data Analysis \textit{Jonathan Innis, Gabriel Britain}}{
 	  Analysis began upon downloading the training dataset. The overall class
 	  distribution can be seen in Figure \ref{fig:class-dist} on page
 	  \pageref{fig:class-dist}.
@@ -118,7 +118,7 @@
   under-represented in the toxic classes. Further data analysis can be found in
   the "Data Introspection" file under the \texttt{src} folder.
 
-  \subsection{Establishing a Baseline}{
+  \subsection{Establishing a Baseline \textit{Gabriel Britain}}{
 	  In order to evaluate the models developed and verify that they were having
 	  an actual impact on classification quality, a baseline was created using the
 	  distribution of toxicity classes found. The result of the baseline on the
@@ -151,7 +151,7 @@
 
  }
 \section{Model Development}{
-  \subsection{Feature Engineering}{
+  \subsection{Feature Engineering \textit{Gabriel Britain}}{
 	  Initially, the only feature used in training each model was the tokenized
 	  document corpus as a bag-of-words (BOW), represented through TF-IDF vectors.
 	  However, we soon realized that there were some words that automatically
@@ -165,7 +165,7 @@
 	  underrepresentation of the "identity hate" class proved to be more difficult
 	  than that of the "obscene" class, and did not lead to similar results.
   }
-  \subsection{Naive Bayes Classifier}{
+  \subsection{Naive Bayes Classifier \textit{Jonathan Innis}}{
 	  The first model built was a Naive Bayes classifier. A “bag of words” model
 	  is typically a strong baseline for most text classification problems. In
 	  this particular task, the presence/absence of certain words in a comment can
@@ -207,7 +207,7 @@
 	  Despite the macro-averaged F1 score not changing, the weighted-average F1
 	  score increased slightly, improving the classifier.
   }
-  \subsection{Support Vector Machines (SVMs)}{
+  \subsection{Support Vector Machines (SVMs) \textit{Jonathan Innis}}{
 	  The second model created was an SVM model, to see if there would be
 	  improvements over the Naive Bayes classifier. The same feature set was used
 	  as in the Naive Bayes classifier, and the same exhaustive hyperparameter
@@ -239,7 +239,7 @@
 		  \label{table:svm-test}
 	  \end{table}
   }
-  \subsection{Random Forest Classifier}{
+  \subsection{Random Forest Classifier \textit{Gabriel Britain}}{
 	  The next model constructed was a random forest classifier. Random forest
 	  classifiers can accommodate imbalanced datasets by weighting majority
 	  classifications less on each example, which can reduce the impact that class
@@ -274,7 +274,7 @@
 	  \end{table}
   }
 
-  \subsection{Recurrent Neural Network (RNN)}{
+  \subsection{Recurrent Neural Network (RNN) \textit{Gabriel Britain}}{
 	  The final model constructed was a recurrent neural network classifier. The
 	  use of the bag-of-words interpretation of comments loses a significant
 	  amount of information, like sentence structure and word meaning. Recurrent
@@ -322,7 +322,7 @@
   }
  }
 
-\section{Results Analysis}{
+\section{Results Analysis \textit{Gabriel Britain, Jonathan Innis}}{
   After completing all of our tuned hyperparameter runs, we extracted features
   from the Naive Bayes classifier, and viewed the words and phrases that
   contributed most to each classification. Selected results can be seen in
@@ -374,7 +374,7 @@
 
  }
 
-\section{Conclusions}{
+\section{Conclusions \textit{Gabriel Britain, Jonathan Innis}}{
   After evaluating the results of each model, it can be concluded that the Naive
   Bayes classifier has the best performance; however, we believe that this is
   largely due to the significant imbalance of classes and the size of data. If
